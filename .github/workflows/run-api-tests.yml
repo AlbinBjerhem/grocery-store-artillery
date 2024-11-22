@@ -32,19 +32,23 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # Step 4: Install Artillery for load testing
+      # Step 4: Start the backend server
+      - name: Start backend server
+        run: nohup npm run backend &
+
+      # Step 5: Install Artillery for load testing
       - name: Install Artillery
         run: npm install -g artillery
 
-      # Step 5: Run Artillery Playwright test
+      # Step 6: Run Artillery Playwright test
       - name: Run Playwright test with Artillery
         run: artillery run load-tests/basic.yml
 
-      # Step 6: Save load test report
+      # Step 7: Save load test report
       - name: Save load test report
         run: artillery run --output report.json load-tests/basic.yml
 
-      # Step 7: Upload report as an artifact
+      # Step 8: Upload report as an artifact
       - name: Upload load test report
         uses: actions/upload-artifact@v3
         with:
