@@ -32,6 +32,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Run Build
+        run: npm run build
+
       # Step 4: Start the backend server
       - name: Start backend server
         run: nohup npm run backend &
