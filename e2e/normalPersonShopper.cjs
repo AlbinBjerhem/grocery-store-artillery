@@ -1,6 +1,8 @@
-import { test, expect } from '@playwright/test';
+module.exports = { helloFlow };
 
-test('test', async ({ page }) => {
+async function helloFlow(page) {
+  await page.goto('http://127.0.0.1:4000/');
+
   await page.goto('http://127.0.0.1:4000/kategori/frukt-och-gront');
   await page.getByRole('link', { name: 'Frukt & Grönt' }).click();
   await page.getByRole('heading', { name: 'Apelsin Klass' }).dblclick();
@@ -22,4 +24,4 @@ test('test', async ({ page }) => {
   await page.getByRole('link', { name: 'Pasta', exact: true }).click();
   await page.getByRole('link', { name: 'Tagliatelle' }).click();
   await page.getByRole('heading', { name: 'Pappardelle Ägg Pasta' }).click();
-});
+};
